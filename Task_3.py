@@ -1,0 +1,6 @@
+print("Введите n:")
+n = input()
+num_1 = int(n)
+num_2 = int(n + n)
+num_3 = int(n + n + n)
+print('n + nn + nnn =', num_1 + num_2 + num_3)
