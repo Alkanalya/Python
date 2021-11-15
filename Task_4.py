@@ -1,8 +1,6 @@
-print("Введите число:")
-num = int(input())
-max_ciph = -1
-while num != 0:
-    if num % 10 > max_ciph:
-        max_ciph = num % 10
-    num = num // 10
-print('Максимальная цифра в числе:', max_ciph)
+sentence = input('Введите слова через пробел. Для завершения строки нажмите "Enter"\n')
+sntc_list = sentence.split()
+i = 0
+for word in sntc_list:
+  i = i + 1
+  print(f'{i}) {word[:10]}') 
