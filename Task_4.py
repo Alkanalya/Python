@@ -2,5 +2,5 @@ sentence = input('Введите слова через пробел. Для за
 sntc_list = sentence.split()
 i = 0
 for word in sntc_list:
-  i = i + 1
-  print(f'{i}) {word[:10]}') 
+  i += 1
+  print(f'{i}) {word[:10]}')

@@ -6,16 +6,24 @@ while True:
         break
     my_list.append(item)
 
+# Вариант через вставку в новый лист
 my_list_changed = []
-# вставка в новый лист
 i = 1
 while i < len(my_list):
     my_list_changed.append(my_list[i])
     my_list_changed.append(my_list[i - 1])
-    i = i + 2
+    i += 2
 if len(my_list) % 2 == 1:
     my_list_changed.append(my_list[-1])
 print(my_list_changed)
 
-# разворот на месте с доп переменной?
-# срез + insert...
+# Разворот на месте с доп. переменной
+temp = 0
+for i in range(1, len(my_list), 2):
+#   Прямой обмен переменных, но мы не проходили этого вроде...
+#   my_list[i], my_list[i - 1] = my_list[i - 1], my_list[i]
+    temp = my_list[i]
+    my_list[i] = my_list[i - 1]
+    my_list[i - 1] = temp
+print(my_list)
+
