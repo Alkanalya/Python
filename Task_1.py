@@ -1,12 +1,9 @@
-def sub(var_1, var_2):
-    try:
-        subtr = var_1 / var_2
-    except ZeroDivisionError:
-        print('Делить на ноль нельзя!')
-        return 'Будьте внимательны в следующий раз'
-    return round(subtr, 3)
+from sys import argv
 
-a = int(input("Введите делимое и делитель, разделяя Enter'ом\n"))
-b = int(input())
+script_name, total_hours, work_per_hour, premium = argv
 
-print(sub(a,b))
+try:
+    salary = int(total_hours) * int(work_per_hour) + int(premium)
+    print(f'Зарплата: {salary}')
+except ValueError:
+    print('Введены неверные аргументы!')
