@@ -1,20 +1,15 @@
-month = int(input('введите месяц числом\n'))
-month_list = ['зима', 'весна', 'лето', 'осень', 'зима']
-print(month_list[month // 3])
+def my_func(num_1, num_2, num_3):
+  return (sum([num_1,num_2, num_3]) - min(num_1,num_2, num_3))
 
-# Вариант со словарём сделал в лоб. Другого способа пока не нашёл. Буду рад узнать, если такой есть.
-month_dict = {
-1 : "зима",
-2 : "зима",
-3 : "весна",
-4 : "весна",
-5 : "весна",
-6 : "лето",
-7 : "лето",
-8 : "лето",
-9 : "осень",
-10 : "осень",
-11 : "осень",
-12 : "зима"}
+while True:
+  try:
+    var_1 = int(input('Введите первое число: '))
+    var_2 = int(input('Второе число: '))
+    var_3 = int(input('Третье число: '))
+  except ValueError:
+    print('Необходимо вводить ЧИСЛА!!!\n')
+    continue
+  else:
+    break
 
-print(month_dict.get(month))
+print(f"Сумма двух наибольших чисел: {my_func(var_1, var_2, var_3)}")

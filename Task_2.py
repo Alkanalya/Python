@@ -1,29 +1,11 @@
-print("Введите элементы списка, разделяя клавишей 'Enter'. Когда закончите - напишите 'end'")
-my_list = []
-while True:
-    item = input()
-    if item == 'end':
-        break
-    my_list.append(item)
+def info(name, surname, day_of_birth, city, email, number):
+  print(f"\n{name.capitalize()} {surname.capitalize()}, {day_of_birth} г.р., {city}, e-mail: {email}, Номер телефона: {number}")
 
-# Вариант через вставку в новый лист
-my_list_changed = []
-i = 1
-while i < len(my_list):
-    my_list_changed.append(my_list[i])
-    my_list_changed.append(my_list[i - 1])
-    i += 2
-if len(my_list) % 2 == 1:
-    my_list_changed.append(my_list[-1])
-print(my_list_changed)
+arg_1 = input('Введите информацию о человеке.\nИмя: ')
+arg_2 = input('Фамилия: ')
+arg_3 = input('День Рождения: ')
+arg_4 = input('Город проживания: ')
+arg_5 = input('E-mail: ')
+arg_6 = input('Номер телефона: ')
 
-# Разворот на месте с доп. переменной
-temp = 0
-for i in range(1, len(my_list), 2):
-#   Прямой обмен переменных, но мы не проходили этого вроде...
-#   my_list[i], my_list[i - 1] = my_list[i - 1], my_list[i]
-    temp = my_list[i]
-    my_list[i] = my_list[i - 1]
-    my_list[i - 1] = temp
-print(my_list)
-
+info(city=arg_4, surname=arg_2, day_of_birth=arg_3, email=arg_5, name=arg_1, number=arg_6)
