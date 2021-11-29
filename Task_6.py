@@ -1,19 +1,12 @@
-from itertools import count, cycle
-
-num = int(input('С какого числа начать итерацию?\n'))
-listik = input('Введите строку для итераций:\n')
-stop = int(input('Сколько итераций провести?\n'))
-i = 0
-j = 0
-
-for i in count(num):
-  if i >= stop + num:
-    break
-  else:
-    print(i)
-
-for char in cycle(listik):
-  if j >= stop:
-    break
-  print(char)
-  j += 1
+learn_dict = {}
+with open("texts/task_6.txt", 'r') as file:
+  for line in file:
+    data = line.split(':')
+    hours = data[1].split()
+    total = 0
+    for item in hours:
+      value = item.strip('(лаб)пр')
+      if value != '-':
+        total += int(value)
+    learn_dict.update({data[0] : total})
+print(learn_dict)

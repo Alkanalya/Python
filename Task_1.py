@@ -1,9 +1,32 @@
-from sys import argv
+file = open(r"texts/task_1_0.txt", 'w', encoding='utf-8')
+print("Продолжайте вводить строки, которые хотите увидеть в файле, через Enter. Пустая строка окончит запись.")
 
-script_name, total_hours, work_per_hour, premium = argv
+# Основная реализация
+while True:
+  next_line = input()
+  if next_line == '':
+    break
+  file.write(next_line + '\n')
+file.close()
 
-try:
-    salary = int(total_hours) * int(work_per_hour) + int(premium)
-    print(f'Зарплата: {salary}')
-except ValueError:
-    print('Введены неверные аргументы!')
+file = open(r"texts/task_1_1.txt", 'w', encoding='utf-8')
+print("Эти строки попадут во второй файл. Принцип тот же.")
+# Альтернативная реализация через writelines
+new_lines = []
+while True:
+  next_line = input()
+  if next_line == '':
+    break
+  new_lines.append(next_line + '\n')
+file.writelines(new_lines)
+file.close()
+
+# Альтернативная реализация через менеджер контекста
+print('А это пойдёт в третий файл.')
+with open(r"texts/task_1_2.txt", "w", encoding='utf-8') as file_obj:
+  while True:
+    new_line = input()
+    if new_line == '':
+      break
+    print(new_line, file=file_obj)
+

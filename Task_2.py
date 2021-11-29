@@ -1,5 +1,12 @@
-list_nums = input('Введите числа через пробел.\n').split()
-nums = [int(number) for number in list_nums]
+lines = 0
+dict_lines = {}
 
-bigger_nums = [nums[i] for i in range(len(nums)) if (nums[i] > nums[i - 1])]
-print(bigger_nums)
+with open("texts/task_2.txt", 'r', encoding='utf-8') as file_obj:
+  for line in file_obj:
+    lines += 1
+    words = line.split()
+    dict_lines.update({lines: len(words)})
+
+print(f'{dict_lines}\n')
+for key in dict_lines.keys():
+  print(f'{key} : {dict_lines[key]}')
