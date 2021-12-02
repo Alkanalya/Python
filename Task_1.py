@@ -1,32 +1,29 @@
-file = open(r"texts/task_1_0.txt", 'w', encoding='utf-8')
-print("Продолжайте вводить строки, которые хотите увидеть в файле, через Enter. Пустая строка окончит запись.")
+from time import sleep
 
-# Основная реализация
-while True:
-  next_line = input()
-  if next_line == '':
-    break
-  file.write(next_line + '\n')
-file.close()
 
-file = open(r"texts/task_1_1.txt", 'w', encoding='utf-8')
-print("Эти строки попадут во второй файл. Принцип тот же.")
-# Альтернативная реализация через writelines
-new_lines = []
-while True:
-  next_line = input()
-  if next_line == '':
-    break
-  new_lines.append(next_line + '\n')
-file.writelines(new_lines)
-file.close()
+class TraficLight:
+    def __init__(self):
+        self.__color = 'off'
 
-# Альтернативная реализация через менеджер контекста
-print('А это пойдёт в третий файл.')
-with open(r"texts/task_1_2.txt", "w", encoding='utf-8') as file_obj:
-  while True:
-    new_line = input()
-    if new_line == '':
-      break
-    print(new_line, file=file_obj)
+    def running(self):
+        for i in range(2):
+            self.__color = '\33[31m red'
+            print(self.__color)
+            sleep(7)
+            self.__color = '\33[31m red \33[0m & \33[33m yellow'
+            print(self.__color)
+            sleep(2)
+            self.__color = '\33[32m green'
+            print(self.__color)
+            sleep(7)
+            self.__color = '\33[33m yellow'
+            print(self.__color)
+        print('\33[0mЗавершение работы светофора')
 
+light_1 = TraficLight()
+print(f'The trafic light is {light_1._TraficLight__color}')
+if input("Введите 'run' для запуска светофора\n") == 'run':
+    light_1.running()
+
+light_2 = TraficLight()
+print(f'The trafic light is {light_2._TraficLight__color}')
