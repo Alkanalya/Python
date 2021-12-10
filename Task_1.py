@@ -28,5 +28,6 @@ class Date():
         else:
             print("Wrong date.")
 
-
-Date.check_date(Date.make_date("31-12-2021"))
+print('Введите дату в формате: число-месяц-год')
+my_date = input()
+Date.check_date(Date.make_date(my_date))

@@ -6,7 +6,7 @@ class UnlimError(Exception):
 enter = list(map(int, input('Введите два числа через пробел:\n').split()))
 try:
     if enter[1] == 0:
-        raise UnlimError('На ноль делить нельзя. Можно, правда, но сегодня нельзя.')
+        raise UnlimError('На ноль сегодня делить нельзя.')
     res = enter[0] / enter[1]
 except UnlimError as err:
     print(err)
