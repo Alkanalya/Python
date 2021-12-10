@@ -1,9 +1,7 @@
-log = []
-
 class Storage():
-    global log
     def __init__(self):
         self.data_base = {'Printers': [], 'Scaners': [], 'Xerox': []}
+        self.log = []
 
     def show_info(self):
         print(f"Кол-во принтеров: {len(self.data_base['Printers'])}\nКол-во сканеров: {len(self.data_base['Scaners'])}\nКол-во ксероксов: {len(self.data_base['Xerox'])}\n")
@@ -51,37 +49,28 @@ class Scaner(Org_tech):
 
 my_store = Storage()
 
-#a = Printer('red', 'samsung')
-#b = Printer('blue', 'LG')
-#c = Printer('yellow', 'samsung')
-
-#my_store.get_into(a)
-#my_store.get_into(b)
-#my_store.get_into(c)
-
-# my_store.show_info()
-
 print('Добро пожаловать в управление складом:')
-print('Команды:')
-print("1.'Принять' - принять оргтехнику на склад")
-print("2.'Отправить' - отправить оргтехнику в подразделение")
-print("3.'Показать инфо' - показать количество оргтехники на складе")
-print("4.'Показать логи' - показать движение оргтехники по складу")
-print("5.'Выход' - выход из программы")
 while True:
+    print('---------------------------------------------------------------------------')
+    print('Команды:')
+    print("1.'Принять' - принять оргтехнику на склад")
+    print("2.'Отправить' - отправить оргтехнику в подразделение")
+    print("3.'Показать инфо' - показать количество оргтехники на складе")
+    print("4.'Показать логи' - показать движение оргтехники по складу")
+    print("5.'Выход' - выход из программы")
     enter = input()
     match enter:
-        case 'Принять':
+        case 'Принять' | '1':
             print("Введите данные в формате: число тип")
             while True:
                 in_store = input().split()
                 new_item = None
                 match in_store[1].lower():
-                    case 'принтер' | 'printer':
+                    case 'принтер'| 'принтеры' | 'принтеров' | 'printer' | 'printers':
                         new_item = Printer('default', 'default')
-                    case 'сканер' | 'scaner':
+                    case 'сканер' | 'сканеры' | 'сканеров' |'scaner' | 'scaners':
                         new_item = Scaner('default', 'default')
-                    case 'ксерокс' | 'xerox':
+                    case 'ксерокс'| 'ксероксы' | 'ксероксов'| 'xeroxes' | 'xerox':
                         new_item = Xerox('default', 'default')
                     case _:
                         print('Неверный тип оргтехники. Повторите ввод.')
@@ -95,22 +84,24 @@ while True:
                     if number < 0:
                         print('Количество принимаемой оргтехники не может быть меньше нуля.')
                         continue
+                    elif number == 0:
+                        continue
                     else:
                         for i in range(number):
                             my_store.get_into(new_item)
-                        log.append(f'На склад прибыло {number} оргтехники, тип: {new_item.__class__.__name__}')
+                        my_store.log.append(f'На склад прибыло {number} оргтехники, тип: {new_item.__class__.__name__}')
                         break
-        case 'Отправить':
+        case 'Отправить' | '2':
             print("Введите данные в формате: число тип подразделение")
             while True:
                 out_store = input().split()
                 new_item = None
                 match out_store[1].lower():
-                    case 'принтер' | 'printer' | 'printers':
-                        cls_name = 'Printer'
-                    case 'сканер' | 'scaner' | 'scaners':
+                    case 'принтер'| 'принтеры' | 'принтеров' | 'printer' | 'printers':
+                        cls_name = 'Printers'
+                    case 'сканер' | 'сканеры' | 'сканеров' |'scaner' | 'scaners':
                         cls_name = 'Scaners'
-                    case 'ксерокс' | 'xerox':
+                    case 'ксерокс'| 'ксероксы' | 'ксероксов'| 'xeroxes' | 'xerox':
                         cls_name = 'Xerox'
                     case _:
                         print('Неверный тип оргтехники. Повторите ввод.')
@@ -124,21 +115,26 @@ while True:
                     if number < 0:
                         print('Количество отправляемой оргтехники не может быть меньше нуля.')
                         continue
+                    elif number == 0:
+                        continue
                     elif number > len(my_store.data_base[cls_name]):
                         print('На складе нет такого количества данного типа оргтехники.')
                         continue
                     else:
                         for i in range(number):
                             my_store.send_to_subdiv(cls_name)
-                        log.append(f'Со склада отправлено {number} оргтехники типа {new_item.__class__.__name__} в подразделение {out_store[2]}')
+                        my_store.log.append(f'Со склада отправлено {number} оргтехники типа {cls_name} в подразделение {out_store[2]}')
                         break
 
         case 'Показать инфо' | '3':
             my_store.show_info()
 
         case 'Показать логи' | '4':
-            for text in my_store.log:
-                print(text)
+            if my_store.log == []:
+                print('Движений на складе не было.')
+            else:
+                for text in my_store.log:
+                    print(text)
 
         case 'Выход' | '5':
             break
