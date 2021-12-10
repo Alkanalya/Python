@@ -47,6 +47,7 @@ class Scaner(Org_tech):
         self.can_scan = True
 
 
+
 my_store = Storage()
 
 print('Добро пожаловать в управление складом:')
